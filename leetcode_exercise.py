@@ -121,3 +121,109 @@ def containsNearbyDuplicate(nums, k):
         else:
             temp[nums[i]] = i
     return False
+
+#April 28th, 2018
+#Binary Tree, implement preorder, inorder and postorder recursively
+class Tree(object):
+    def __init__(self):
+        self.data = None
+        self.left = None
+        self.right = None
+    
+    def preorder(root):
+        if root is None:
+            return
+        else:
+            print(root.data)
+            preorder(root.left)
+            preorder(root.right)
+        
+    def inorder(root):
+        if root is None:
+            return
+        else:
+            inorder(root.left)
+            print(root.data)
+            inorder(root.right)
+            
+    def postorder(root):
+        if root is None:
+            return
+        else:
+            postorder(root.left)
+            postorder(root.right)
+            print(root.data)
+
+#build a simple tree for test
+root = Tree()
+root.data = "root"
+root.left = Tree()
+root.left.data = "left"
+root.right = Tree()
+root.right.data = "right"
+
+#implement it iteratively
+def preorder(root):
+    result = []
+    if root is None:
+        return result
+    stack = []
+    node = root
+    while node or stack:
+        while node:
+            result.append(node.data)
+            stack.append(node)
+            node = node.left
+        node = stack.pop()
+        node = node.right
+    return result
+
+def inorder(root):
+    result = []
+    if root is None:
+        return result
+    stack = []
+    node = root
+    while node or stack:
+        while node:
+            stack.append(node)
+            node = node.left
+        node = stack.pop()
+        result.append(node.data)
+        node = node.right
+    return result
+
+def levelorder(root):
+    result = []
+    if root is None:
+        return result
+    current_level = [root]
+    while current_level:
+        next_level = []
+        level_result = []
+        for temp in current_level:
+            if temp.left != None:
+                next_level.append(temp.left)
+            if temp.right != None:
+                next_level.append(temp.right)
+            level_result.append(temp.data)
+        result.append(level_result)
+        current_level = next_level
+    return result
+
+#another solutions: using queue, but the format doesnot meet the requirement of leetcode
+def levelorder(root):
+    result = []
+    if root is None:
+        return result
+    myqueue = []
+    node = root
+    myqueue.append(node)
+    while myqueue:
+        node = myqueue.pop(0)
+        if node.left != None:
+            myqueue.append(node.left)
+        if node.right != None:
+            myqueue.append(node.right)
+        result.append(node.data)
+    return result

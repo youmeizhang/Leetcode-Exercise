@@ -234,3 +234,17 @@ def maxDepth(self, root):
         return 0
     else:
         return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+
+#Symmetric Tree
+class Solution(object):
+    def leftandright(self, p, q):
+        if p == None and q == None:
+            return True
+        if p != None and q != None and p.val == q.val:
+            return self.leftandright(p.left, q.right) and self.leftandright(q.left, p.right)  #be careful of this
+        return False
+    
+    def isSymmetric(self, root):
+        if root:
+            return self.leftandright(root.left, root.right)
+        return True

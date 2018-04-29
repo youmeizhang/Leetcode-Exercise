@@ -228,6 +228,7 @@ def levelorder(root):
         result.append(node.data)
     return result
 
+#April 29th, 2018 
 #Maximum Depth of Binary Tree
 def maxDepth(self, root):
     if root == None:
@@ -248,3 +249,11 @@ class Solution(object):
         if root:
             return self.leftandright(root.left, root.right)
         return True
+
+#path sum
+def hasPathSum(self, root, sum):
+    if root == None:
+        return False
+    if root.left == None and root.right == None:
+        return root.val == sum
+    return self.hasPathSum(root.left, sum-root.val) or self.hasPathSum(root.right, sum-root.val)

@@ -11,3 +11,6 @@ These are my solutions to the problems in Leetcode.<br/>
 9. Binary Tree Inorder Traversal (Recursive & iterative)
 10. Binary Tree Postorder Traversal (Recursive & iterative)
 11. Binary Tree Level Order Traversal
+12. Maximum Depth of Binary Tree
+13. Symmetric Tree
+14. Path Sum

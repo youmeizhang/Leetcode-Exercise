@@ -281,3 +281,51 @@ def buildTree(self, preorder, inorder):
     root.left = self.buildTree(preorder[1: idx], inorder[0: idx])
     root.right = self.buildTree(preorder[idx+1: len(preorder)], inorder[idx+1: len(inorder)])
     return root
+
+#Populating Next Right Pointers in Each Node
+def connect(self, root):
+    if root and root.left:
+        root.left.next = root.right
+        if root.next:
+            root.right.next = root.next.left
+        else:
+            root.next = None
+        self.connect(root.left)
+        self.connect(root.right)
+        
+#Populating Next Right Pointers in Each Node II
+def connect(self, root):
+    if root:
+        if root.left and root.right:
+            root.left.next = root.right
+            temp = root.next
+            while temp:
+                if temp.left:
+                    root.right.next = temp.left
+                    break
+                if temp.right:
+                    root.right.next = temp.right
+                    break
+                temp = temp.next
+        elif root.left:
+            temp = root.next
+            while temp:
+                if temp.left:
+                    root.left.next = temp.left
+                    break
+                if temp.right:
+                    root.left.next = temp.right
+                    break
+                temp = temp.next
+        elif root.right:
+            temp = root.next
+            while temp:
+                if temp.left:
+                    root.right.next = temp.left
+                    break
+                if temp.right:
+                    root.right.next = temp.right
+                    break
+                temp = temp.next
+        self.connect(root.right)
+        self.connect(root.left)  

@@ -257,3 +257,27 @@ def hasPathSum(self, root, sum):
     if root.left == None and root.right == None:
         return root.val == sum
     return self.hasPathSum(root.left, sum-root.val) or self.hasPathSum(root.right, sum-root.val)
+
+#Construct Binary Tree from Inorder and Postorder Traversal
+def buildTree(self, inorder, postorder):
+    if len(inorder) == 0:
+        return None
+    if len(inorder) == 1:
+        return TreeNode(inorder[0])
+    root = TreeNode(postorder[len(postorder) - 1])
+    idx = inorder.index(postorder[len(postorder)-1])
+    root.left = self.buildTree(inorder[0: idx], postorder[0: idx])
+    root.right = self.buildTree(inorder[idx+1: len(inorder)], postorder[idx: len(postorder) - 1])
+    return root
+
+#Construct Binary Tree from Preorder and Inorder Traversal
+def buildTree(self, preorder, inorder):
+    if len(inorder) == 0:
+        return None
+    if len(inorder) == 1:
+        return TreeNode(inorder[0])
+    root = TreeNode(preorder[0])
+    idx = inorder.index(preorder[0])
+    root.left = self.buildTree(preorder[1: idx], inorder[0: idx])
+    root.right = self.buildTree(preorder[idx+1: len(preorder)], inorder[idx+1: len(inorder)])
+    return root

@@ -14,3 +14,7 @@ These are my solutions to the problems in Leetcode.<br/>
 12. Maximum Depth of Binary Tree
 13. Symmetric Tree
 14. Path Sum
+15. Construct Binary Tree from Inorder and Postorder Traversal
+16. Construct Binary Tree from Preorder and Inorder Traversal
+17. Populating Next Right Pointers in Each Node
+18. Populating Next Right Pointers in Each Node II

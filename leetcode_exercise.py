@@ -329,3 +329,20 @@ def connect(self, root):
                 temp = temp.next
         self.connect(root.right)
         self.connect(root.left)  
+        
+#Lowest Common Ancestor of a Binary Tree
+def lowestCommonAncestor(self, root, p, q):
+    if not root:
+        return root
+    if root == p or root == q:
+        return root
+
+    left = self.lowestCommonAncestor(root.left, p, q)
+    right = self.lowestCommonAncestor(root.right, p, q)
+    
+    if left != None and right != None:
+        return root
+    if left != None:
+        return left
+    else:
+        return right

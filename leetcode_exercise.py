@@ -346,3 +346,32 @@ def lowestCommonAncestor(self, root, p, q):
         return left
     else:
         return right
+#Serialize and Deserialize Binary Tree
+class Codec:
+    def serialize(self, root):
+        result = []
+        def preorder(root):
+            if not root:
+                result.append('null')
+            else:
+                result.append(str(root.val))
+                preorder(root.left)
+                preorder(root.right)
+        preorder(root)
+        return ''.join(result)
+
+    def deserialize(self, data):
+        if len(data) == 0:
+            return None
+        vals = collections.deque(val for val in data.split())
+        def build():
+            if vals:
+                val = vals.popleft()
+                if val == '#':
+                    return None
+                else:
+                    root = TreeNode(int(val))
+                    root.left = build()
+                    root.right = build()
+                return root
+        return build()

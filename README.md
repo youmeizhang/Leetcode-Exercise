@@ -19,3 +19,4 @@ These are my solutions to the problems in Leetcode.<br/>
 17. Populating Next Right Pointers in Each Node
 18. Populating Next Right Pointers in Each Node II
 19. Lowest Common Ancestor of a Binary Tree
+20. Serialize and Deserialize Binary Tree

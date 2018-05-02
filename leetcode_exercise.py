@@ -399,3 +399,41 @@ def mySqrt(self, x):
         else:
             left = mid + 1
     return right
+
+#Guess Number Higher or Lower
+def guessNumber(self, n):
+        if n == 0:
+            return 0
+        left = 1
+        right = n
+        while (left <= right): 
+            mid = (left + right) / 2 #mid = (left + (right - left) >> 1)
+            result = guess(mid)
+            if result == 0:
+                return mid
+            elif result == 1:
+                left = mid + 1
+            else:
+                right = mid - 1
+                
+#Search in Rotated Sorted Array
+def search(self, nums, target):
+    left = 0
+    right = len(nums) - 1
+    while (left <= right):
+        mid = (left + right) / 2
+        if nums[mid] == target:
+            return mid
+        
+        if nums[mid] >= nums[left]: #left is ascending
+            if target < nums[mid] and target >= nums[left]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        
+        if nums[mid] < nums[right]: #right is ascending
+            if target <= nums[right] and target > nums[mid]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    return -1

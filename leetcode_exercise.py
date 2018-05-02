@@ -375,3 +375,27 @@ class Codec:
                     root.right = build()
                 return root
         return build()
+    
+#Binary Search
+def search(self, nums, target):
+    for i in range(0, len(nums)):
+        if nums[i]==target:
+            return i
+    else:
+        return -1
+    
+#Sqrt(x)
+def mySqrt(self, x):
+    if x == 0:
+        return 0
+    left = 1
+    right = x / 2 + 1
+    while(left <= right):
+        mid = (left + right) / 2
+        if mid**2 == x:
+            return mid
+        elif mid**2 > x:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return right

@@ -24,3 +24,6 @@ These are my solutions to the problems in Leetcode.<br/>
 22. Sqrt(x)
 23. Guess Number Higher or Lower
 24. Search in Rotated Sorted Array
+25. First Bad Version
+26. Find Peak Element
+27. Find Minimum in Rotated Sorted Array

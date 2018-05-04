@@ -27,3 +27,5 @@ These are my solutions to the problems in Leetcode.<br/>
 25. First Bad Version
 26. Find Peak Element
 27. Find Minimum in Rotated Sorted Array
+28. Search for a Range
+29. Find K Closest Elements

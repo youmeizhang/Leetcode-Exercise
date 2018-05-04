@@ -517,3 +517,39 @@ def findClosestElements(self, arr, k, x):
         else:
             right -=1
     return arr[left: right+1]
+
+#def myPow(self, x, n):
+    if n==0:
+        return 1
+    elif n < 0:
+        return 1 / self.myPow(x, -n)
+    elif n % 2:
+        return self.myPow(x*x, n/2)*x
+    else:
+        return self.myPow(x*x, n/2)
+    
+#Valid Perfect Square
+def isPerfectSquare(self, num):
+    if num == 0 or num == 1:
+        return True
+    left = 0
+    right = num
+    while left <= right:
+        mid = (left + right) / 2
+        if mid*mid == num:
+            return True
+        elif mid*mid > num:
+            right = mid-1
+        else:
+            left = mid + 1       
+    return False
+
+#Find Smallest Letter Greater Than Target (环形有序)
+def nextGreatestLetter(self, letters, target):
+    letters_new = set(map(ord, letters))
+    for i in range(1, 27):
+        candidate = ord(target) + i
+        if candidate > ord('z'):
+            candidate -= 26
+        if candidate in letters_new:
+            return chr(candidate)

@@ -29,3 +29,6 @@ These are my solutions to the problems in Leetcode.<br/>
 27. Find Minimum in Rotated Sorted Array
 28. Search for a Range
 29. Find K Closest Elements
+30. Pow(x, n)
+31. Valid Perfect Square
+32. Find Smallest Letter Greater Than Target

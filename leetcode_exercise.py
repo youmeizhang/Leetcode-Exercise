@@ -481,3 +481,27 @@ def findMin(self, nums):
         else:
             left = mid + 1
     return nums[left]
+
+#Search for a Range
+def searchRange(self, nums, target):
+    if len(nums)==0:
+        return [-1, -1]
+    left = 0
+    right = len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            left = mid + 1
+        elif nums[mid] > target:
+            right = mid - 1
+        else:
+            result = [0, 0]
+            if nums[left] == target: result[0] = left
+            if nums[right] == target: result[1] = right
+            for i in range(mid, right+1):
+                if nums[i] != target: result[1] = i-1; break
+            for i in range(mid, left-1, -1):
+                if nums[i] != target: result[0] = i+1; break
+            return result
+    return [-1, -1]
+

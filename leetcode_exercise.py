@@ -505,3 +505,15 @@ def searchRange(self, nums, target):
             return result
     return [-1, -1]
 
+#Find K Closest Elements
+def findClosestElements(self, arr, k, x):
+    if len(arr) == 0 or len(arr) < k:
+        return None
+    left = 0
+    right = len(arr) - 1
+    while (right - left + 1) > k:
+        if abs(x - arr[right]) < abs(x- arr[left]):
+            left += 1
+        else:
+            right -=1
+    return arr[left: right+1]

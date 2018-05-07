@@ -32,3 +32,6 @@ These are my solutions to the problems in Leetcode.<br/>
 30. Pow(x, n)
 31. Valid Perfect Square
 32. Find Smallest Letter Greater Than Target
+33. Find Minimum in Rotated Sorted Array II
+34. Two Sum II - Input array is sorted
+35. Find the Duplicate Number

@@ -582,3 +582,32 @@ def twoSum(self, numbers, target):
             right -= 1
         else:
             left += 1
+            
+#Two Sum II - Input array is sorted (Solution two: but time limit)
+def twoSum(self, numbers, target):
+    for i in range(0, len(numbers)):
+        for j in range(i+1, len(numbers)):
+            if numbers[j] == target-numbers[i]:
+                return [i+1, j+1]
+            
+#Find the Duplicate Number
+def findDuplicate(self, nums):
+    left = 1
+    right = len(nums) - 1
+    while left <= right:
+        mid = (left + right) / 2
+        count = sum(x <= mid for x in nums)
+        if count > mid:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return left
+
+#Find the Duplicate Number (Solution two: but time limit)
+def findDuplicate(self, nums):
+    result = []
+    for i in range(0, len(nums)):
+        if nums[i] not in result:
+            result.append(nums[i])
+        else:
+            return nums[i]

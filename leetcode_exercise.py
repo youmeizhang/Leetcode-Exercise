@@ -553,3 +553,32 @@ def nextGreatestLetter(self, letters, target):
             candidate -= 26
         if candidate in letters_new:
             return chr(candidate)
+        
+#Find Minimum in Rotated Sorted Array II
+def findMin(self, nums):
+    if len(nums) == 0:
+        return 0
+    left = 0
+    right = len(nums) - 1
+    while (left < right):
+        mid = (left + right) / 2
+        mid = int(mid)
+        if nums[mid] < nums[right]:
+            right = mid
+        elif nums[mid] > nums[right]:
+            left = mid + 1
+        else:
+            right -= 1
+    return nums[left]
+
+#Two Sum II - Input array is sorted
+def twoSum(self, numbers, target):
+    left = 0
+    right = len(numbers) - 1
+    while (left<right):
+        if numbers[left] + numbers[right] == target:
+            return [left+1, right+1]
+        elif numbers[left] + numbers[right] > target:
+            right -= 1
+        else:
+            left += 1

@@ -611,3 +611,49 @@ def findDuplicate(self, nums):
             result.append(nums[i])
         else:
             return nums[i]
+
+#Median of Two Sorted Arrays
+class Solution(object):
+
+    def getKth(self, A, B, k):
+        lenA = len(A); lenB = len(B)
+        if lenA > lenB: return self.getKth(B, A, k)
+        if lenA == 0: return B[k - 1]
+        if k == 1: return min(A[0], B[0])
+        pa = min(k/2, lenA); pb = k - pa
+        if A[pa - 1] <= B[pb - 1]:
+            return self.getKth(A[pa:], B, pb)
+        else:
+            return self.getKth(A, B[pb:], pa)
+    
+    def findMedianSortedArrays(self, A, B):
+        totallen = len(A) + len(B)
+        if totallen % 2 == 1: 
+            return self.getKth(A, B, totallen/2 + 1)
+        else:
+            return (self.getKth(A, B, totallen/2) + self.getKth(A, B, totallen/2 + 1)) * 0.5
+        
+#Binary Search Tree Iterator
+class BSTIterator(object):
+    def __init__(self, root):
+        self.stack = []
+        self.pushleft(root)
+        """
+        :type root: TreeNode
+        """
+    def hasNext(self):
+        return self.stack
+        """
+        :rtype: bool
+        """    
+    def next(self):
+        top = self.stack.pop()
+        self.pushleft(top.right)
+        return top.val
+        """
+        :rtype: int
+        """
+    def pushleft(self, node):
+        while node:
+            self.stack.append(node)
+            node = node.left

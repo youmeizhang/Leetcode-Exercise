@@ -35,3 +35,5 @@ These are my solutions to the problems in Leetcode.<br/>
 33. Find Minimum in Rotated Sorted Array II
 34. Two Sum II - Input array is sorted
 35. Find the Duplicate Number
+36. Median of Two Sorted Arrays
+37. Binary Search Tree Iterator

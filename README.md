@@ -37,3 +37,6 @@ These are my solutions to the problems in Leetcode.<br/>
 35. Find the Duplicate Number
 36. Median of Two Sorted Arrays
 37. Binary Search Tree Iterator
+38. Search in a Binary Search Tree
+39. Kth Smallest Element in a BST
+40. Number of Islands

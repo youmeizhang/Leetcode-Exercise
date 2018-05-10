@@ -657,3 +657,67 @@ class BSTIterator(object):
         while node:
             self.stack.append(node)
             node = node.left
+
+#Search in a Binary Search Tree
+class Solution(object):
+    def searchBST(self, root, val):
+        if root is None:
+            return None
+        else:
+            node = root
+            if node.val == val:
+                return node
+            else:
+                return self.searchBST(node.left, val) or self.searchBST(node.right, val)
+            
+#Kth Smallest Element in a BST
+def kthSmallest(self, root, k):
+    if root is None:
+        return None
+    else:
+        stack = []
+        node = root
+        while node:
+            stack.append(node)
+            node = node.left
+        x = 1
+        while x <= k and stack:
+            node = stack.pop()
+            x += 1
+            right = node.right
+            while right:
+                stack.append(right)
+                right = right.left  
+    return node.val
+
+#Number of Islands
+class Solution(object):
+    def numIslands(self, grid):
+        m = len(grid)
+        if m==0:
+            return 0
+        n = len(grid[0])
+        visit = [[False for i in range(n)] for j in range(m)]
+        
+        def check(x, y):
+            if x < m and y < n and x>=0 and y>=0 and grid[x][y] == '1' and visit[x][y] == False:
+                return True
+        
+        def dfs(x, y):
+            nrow = [1, 0, -1, 0]
+            ncol = [0, 1, 0, -1]
+            for k in range(4):
+                newx = x + nrow[k]
+                newy = y + ncol[k]
+                if check(newx, newy):
+                    visit[newx][newy] = True
+                    dfs(newx, newy)
+        
+        count = 0
+        for row in range(m):
+            for col in range(n):
+                if check(row, col):
+                    visit[row][col] = True
+                    dfs(row, col)
+                    count += 1
+        return count

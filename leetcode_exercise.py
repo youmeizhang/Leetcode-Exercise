@@ -721,3 +721,62 @@ class Solution(object):
                     dfs(row, col)
                     count += 1
         return count
+    
+#Sort Colors
+class Solution(object):
+    def sortColors(self, nums):
+        count_0 = 0
+        count_1 = 0
+        count_2 = 0
+        for i in nums:
+            if i == 0:
+                count_0 += 1
+            elif i == 1:
+                count_1 += 1
+            else:
+                count_2 += 1
+        for i in range(0, count_0):
+            nums[i] = 0
+        for i in range(count_0, count_0+count_1):
+            nums[i] = 1
+        for i in range(count_1+count_0, len(nums)):
+            nums[i] = 2
+            
+#Top K Frequent Elements
+def topKFrequent(self, nums, k):
+    temp ={}
+    for i in range(0, len(nums)):
+        if nums[i] not in temp:
+            temp[nums[i]] = 1
+        else:
+            temp[nums[i]] += 1
+    s = sorted(temp.items(), key=operator.itemgetter(1), reverse=True)#sort a dict
+    result = []
+    for i in range(k):
+        result.append(s[i][0])
+    return result
+
+#Kth Largest Element in an Array
+def findKthLargest(self, nums, k):
+    if len(nums) == 0:
+        return None
+    else:
+        new_nums = sorted(nums, reverse=True)
+        return new_nums[k-1]
+    
+#Merge Intervals
+class Solution(object):
+    def merge(self, intervals):
+        intervals.sort(key = lambda x:x.start)
+        length = len(intervals)
+        res = []
+        for i in range(length):
+            if res == []:
+                res.append(intervals[i])
+            else:
+                size = len(res)
+                if res[size-1].start <= intervals[i].start <= res[size-1].end:
+                    res[size-1].end = max(intervals[i].end, res[size-1].end)
+                else:
+                    res.append(intervals[i])
+        return res

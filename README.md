@@ -40,3 +40,7 @@ These are my solutions to the problems in Leetcode.<br/>
 38. Search in a Binary Search Tree
 39. Kth Smallest Element in a BST
 40. Number of Islands
+41. Sort Colors
+42. Top K Frequent Elements
+43. Kth Largest Element in an Array
+44. Merge Intervals

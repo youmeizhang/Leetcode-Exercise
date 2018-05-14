@@ -780,3 +780,45 @@ class Solution(object):
                 else:
                     res.append(intervals[i])
         return res
+    
+#Search a 2D Matrix II
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        if matrix == [] or matrix == [[]]:
+            return False
+        y = len(matrix[0])-1
+        def binarySearch(nums, left, right):
+            while left <= right:
+                mid = (left+right) / 2
+                if nums[mid] > target:
+                    right = mid-1
+                else:
+                    left = mid + 1
+            return right
+        
+        for x in range(len(matrix)):
+            y = binarySearch(matrix[x], 0, y)
+            if matrix[x][y] == target:
+                return True
+            
+#Jump Game
+class Solution(object):
+    def canJump(self, nums):
+        step = nums[0]
+        for i in range(1, len(nums)):
+            if step > 0:
+                step -= 1
+                step = max(step, nums[i])
+            else:
+                return False
+        return True        
+        return False
+    
+#Unique Paths
+class Solution(object):
+    def uniquePaths(self, m, n):
+        dp = [[1 for i in range(n)] for i in range(m)]
+        for i in range(1, n):
+            for j in range(1, m):
+                dp[j][i] = dp[j-1][i] + dp[j][i-1]
+        return dp[m-1][n-1]

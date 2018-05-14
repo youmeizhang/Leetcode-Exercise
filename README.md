@@ -44,3 +44,6 @@ These are my solutions to the problems in Leetcode.<br/>
 42. Top K Frequent Elements
 43. Kth Largest Element in an Array
 44. Merge Intervals
+45. Search a 2D Matrix II
+46. Jump Game
+47. Unique Paths

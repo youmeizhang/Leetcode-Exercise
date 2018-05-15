@@ -822,3 +822,61 @@ class Solution(object):
             for j in range(1, m):
                 dp[j][i] = dp[j-1][i] + dp[j][i-1]
         return dp[m-1][n-1]
+
+#Factorial Trailing Zeroes (time limit)
+class Solution(object):
+    def trailingZeroes(self, n):
+        if n==0:
+            return 0
+        result = n
+        while (n-1) > 0:
+            result = result*(n-1)
+            n -= 1
+        result = str(result)    
+        zerovalue = 0
+        for i in range(len(result)-1, -1, -1):
+            if result[i] != '0':
+                zerovalue = len(result) - i - 1
+                break
+        return zerovalue
+    
+#Factorial Trailing Zeroes
+class Solution(object):
+    def trailingZeroes(self, n):
+        res = 0
+        while n > 0:
+            n = n/5
+            res += n
+        return res
+    
+#Excel Sheet Column Number
+class Solution(object):
+    def titleToNumber(self, s):
+        sum = 0
+        for i in s:
+            sum = sum*26 + ord(i) - 64
+        return sum
+    
+#Divide Two Integers
+def divide(dividend, divisor):
+    if (dividend > 0 and divisor < 0) or (dividend < 0 and divisor > 0):
+        if abs(dividend) < abs(divisor):
+            return 0
+    sum = 0
+    res = 0
+    count = 0
+    a = abs(dividend)
+    b = abs(divisor)
+    while a >= b:
+        sum = b
+        count = 1
+        while sum + sum <= a:
+            sum += sum
+            count += count
+        a -= sum
+        res += count
+        res 
+            
+    if (dividend > 0 and divisor < 0) or (dividend < 0 and divisor > 0):
+        res = -res
+    return res

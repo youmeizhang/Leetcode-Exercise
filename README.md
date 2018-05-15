@@ -47,3 +47,6 @@ These are my solutions to the problems in Leetcode.<br/>
 45. Search a 2D Matrix II
 46. Jump Game
 47. Unique Paths
+48. Factorial Trailing Zeroes
+49. Excel Sheet Column Number
+50. Divide Two Integers

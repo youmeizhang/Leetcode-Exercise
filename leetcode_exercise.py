@@ -880,3 +880,56 @@ def divide(dividend, divisor):
     if (dividend > 0 and divisor < 0) or (dividend < 0 and divisor > 0):
         res = -res
     return res
+
+#Divide Two Integers
+class Solution(object):
+    def divide(self, dividend, divisor):
+        max_int = 2147483647
+        sign = 1 if (dividend > 0 and divisor > 0) or (dividend < 0 and divisor < 0) else -1
+        quotient = 0
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+        while dividend >= divisor:
+            k = 0
+            temp = divisor
+            while dividend >= temp:
+                dividend -= temp
+                quotient += 1 << k
+                temp <<= 1
+                k += 1
+        quotient = sign * quotient
+        if quotient > max_int:
+            return max_int
+        return quotient
+    
+#Fraction to Recurring Decimal
+class Solution(object):
+    def fractionToDecimal(self, numerator, denominator):
+        negflag = numerator * denominator < 0
+        numerator = abs(numerator)
+        denominator = abs(denominator)
+        loopDict = {}
+        loopStr = None
+        cnt = 0
+        numList = []
+        while True:
+            numList.append(str(numerator / denominator))
+            cnt += 1
+            numerator = (numerator % denominator) * 10
+            if numerator == 0:
+                break
+            loc = loopDict.get(numerator)
+            if loc:
+                loopStr = "".join(numList[loc:cnt])
+                break
+            loopDict[numerator] = cnt
+        ans = numList[0]
+        if len(numList) > 1:
+            ans += "."
+        if loopStr:
+            ans += "".join(numList[1: len(numList) - len(loopStr)]) + "(" + loopStr + ")"
+        else:
+            ans += "".join(numList[1:])
+        if negflag:
+            ans = "-" + ans
+        return ans

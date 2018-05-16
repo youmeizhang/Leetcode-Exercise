@@ -50,3 +50,5 @@ These are my solutions to the problems in Leetcode.<br/>
 48. Factorial Trailing Zeroes
 49. Excel Sheet Column Number
 50. Divide Two Integers
+51. Divide Two Integers
+52. Fraction to Recurring Decimal

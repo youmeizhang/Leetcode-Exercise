@@ -933,3 +933,34 @@ class Solution(object):
         if negflag:
             ans = "-" + ans
         return ans
+#Insert Delete GetRandom O(1)    
+import random
+class RandomizedSet(object):
+
+    def __init__(self):
+        self.datamap = {}
+        self.datalist = []      
+
+    def insert(self, val):
+        if val in self.datamap:
+            return False
+        else:
+            self.datamap[val] = len(self.datalist)
+            self.datalist.append(val)
+            return True
+
+    def remove(self, val):
+        if val not in self.datamap:
+            return False
+        else:
+            idx = self.datamap[val]
+            tail = self.datalist.pop()
+            if idx < len(self.datalist):
+                self.datalist[idx] = tail
+                self.datamap[tail] = idx
+            del self.datamap[val]
+            return True
+        
+
+    def getRandom(self):
+        return random.choice(self.datalist)

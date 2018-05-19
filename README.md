@@ -53,3 +53,7 @@ These are my solutions to the problems in Leetcode.<br/>
 51. Divide Two Integers
 52. Fraction to Recurring Decimal
 53. Insert Delete GetRandom O(1)
+54. Sum of Two Integers
+55. Evaluate Reverse Polish Notation
+56. Majority Element
+57. Task Scheduler

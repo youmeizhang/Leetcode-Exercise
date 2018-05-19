@@ -964,3 +964,63 @@ class RandomizedSet(object):
 
     def getRandom(self):
         return random.choice(self.datalist)
+    
+#Sum of Two Integers
+class Solution(object):
+    def getSum(self, a, b):
+        while b != 0:
+            carry = a & b
+            a = (a^b) % 0x100000000
+            b = (carry<<1) % 0x100000000
+        return a if a <= 0x7FFFFFFF else a | (~0x100000000 + 1)
+    
+#Evaluate Reverse Polish Notation
+class Solution(object):
+    def evalRPN(self, tokens):
+        stack = []
+        for i in range(0, len(tokens)):
+            if tokens[i] != '+' and tokens[i] != '-' and tokens[i] != '/' and tokens[i] != '*':
+                stack.append(int(tokens[i]))
+            else:
+                a = stack.pop()
+                b = stack.pop()
+                if tokens[i] == '+':
+                    stack.append(a+b)
+                elif tokens[i] == '-':
+                    stack.append(b-a)
+                elif tokens[i] == '*':
+                    stack.append(a*b)
+                elif tokens[i] == '/' and a*b < 0:
+                    stack.append(-(-b/a))
+                else:
+                    stack.append(b/a)
+        return stack.pop()
+    
+#Majority Element
+class Solution(object):
+    def majorityElement(self, nums):
+        result = {}
+        for i in range(0, len(nums)):
+            if nums[i] not in result:
+                result[nums[i]] = 1
+            else:
+                result[nums[i]] += 1
+        inverse = [(value, key) for key, value in result.items()]
+        if max(inverse)[0] > len(nums) / 2:
+            value = max(inverse)[1]
+        return value
+    
+#Task Scheduler
+class Solution(object):
+    def leastInterval(self, tasks, n):
+        output = [0] * 26
+        for i in tasks:
+            output[ord(i) - ord('A')] = output[ord(i) - ord('A')] + 1
+            
+        count = 0
+        len_0 = 0
+        max_0 = max(output)
+        for i in output:
+            if i == max_0:
+                count += 1
+        return max(len(tasks), (max_0-1)*(n+1) + count)

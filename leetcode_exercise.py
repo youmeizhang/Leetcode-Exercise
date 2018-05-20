@@ -1024,3 +1024,27 @@ class Solution(object):
             if i == max_0:
                 count += 1
         return max(len(tasks), (max_0-1)*(n+1) + count)
+#Letter Combinations of a Phone Number
+class Solution(object):
+    def letterCombinations(self, digits):
+        dict = {'2': ['a', 'b', 'c'],
+               '3': ['d', 'e', 'f'],
+               '4': ['g', 'h', 'i'],
+               '5': ['j', 'k', 'l'],
+               '6': ['m', 'n', 'o'],
+               '7': ['p', 'q', 'r', 's'],
+               '8': ['t', 'u', 'v'],
+               '9': ['w', 'x', 'y', 'z']}
+        def dfs(num, string, res):
+            if length == 0:
+                return res
+            if num == length:
+                res.append(string)
+                return
+            for i in dict[digits[num]]:
+                dfs(num + 1, string + i, res)
+                
+        res = []            
+        length = len(digits)
+        dfs(0, '', res)
+        return res

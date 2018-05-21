@@ -1048,3 +1048,83 @@ class Solution(object):
         length = len(digits)
         dfs(0, '', res)
         return res
+    
+#Longest Increasing Subsequence
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        if len(nums) == 0:
+            return 0
+        temp = [1] * len(nums)
+        for i in range(0, len(nums)):
+            for j in range(0, i):
+                if nums[j] < nums[i] and temp[j] + 1 > temp[i]:
+                    temp[i] = temp[j] + 1
+        return max(temp)
+    
+#Generate Parentheses    
+class Solution(object):
+    def helpler(self, l, r, item, res):
+        if r < l:
+            return
+        if l == 0 and r == 0:
+            res.append(item)
+        if l > 0:
+            self.helpler(l - 1, r, item + '(', res)
+        if r > 0:
+            self.helpler(l, r - 1, item + ')', res)
+    
+    def generateParenthesis(self, n):
+        if n == 0:
+            return []
+        res = []
+        self.helpler(n, n, '', res)
+        return res
+    
+#Permutations
+class Solution(object):
+    def permute(self, nums):
+        if len(nums) == 0:
+            return []
+        elif len(nums) == 1:
+            return [nums]
+        else:
+            res = []
+            for i in range(0, len(nums)):
+                x = nums[i]
+                xs = nums[:i] + nums[i+1:]
+                for p in self.permute(xs):
+                    res.append([x]+p)
+            return res
+        
+#Subsets
+class Solution(object):
+    def subsets(self, nums):
+        self.res = []
+        def dfs(nums, temp, i):
+            self.res.append(temp[:])
+            for i in range(i, len(nums)):
+                temp.append(nums[i])
+                dfs(nums, temp, i+1)
+                temp.pop()
+        dfs(nums, [], 0)
+        return self.res
+    
+#Word Search
+class Solution(object):
+    def exist(self, board, word):
+        for i in range(0, len(board)):
+            for j in range(0, len(board[0])):
+                if self.dfs(board, i, j, word):
+                    return True
+        return False
+    
+    def dfs(self, board, row, col, word):
+        if len(word) == 0:
+            return True
+        if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]) or board[row][col] != word[0]:
+            return False
+        temp = board[row][col]
+        board[row][col] = ''
+        result = self.dfs(board, row+1, col, word[1:]) or self.dfs(board, row-1, col, word[1:]) or self.dfs(board, row, col+1, word[1:]) or self.dfs(board, row, col-1, word[1:])
+        board[row][col] =temp
+        return result

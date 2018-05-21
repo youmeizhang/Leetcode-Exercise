@@ -58,3 +58,8 @@ These are my solutions to the problems in Leetcode.<br/>
 56. Majority Element
 57. Task Scheduler
 58. Letter Combinations of a Phone Number
+59. Longest Increasing Subsequence
+60. Longest Increasing Subsequence
+61. Permutations
+62. Subsets
+63. Word Search

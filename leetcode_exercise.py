@@ -1128,3 +1128,96 @@ class Solution(object):
         result = self.dfs(board, row+1, col, word[1:]) or self.dfs(board, row-1, col, word[1:]) or self.dfs(board, row, col+1, word[1:]) or self.dfs(board, row, col-1, word[1:])
         board[row][col] =temp
         return result
+    
+#Product of Array Except Self
+class Solution(object):
+    def productExceptSelf(self, nums):
+        listA = [1]
+        listB = [1]
+        tempA = 1
+        for i in range(0, len(nums)-1):
+            tempA = tempA*nums[i]
+            listA.append(tempA)
+        tempB = 1
+        tempNums = list(reversed(nums))
+        for j in range(0, len(tempNums)-1):
+            tempB = tempB * tempNums[j]
+            listB.append(tempB)
+        listBre = list(reversed(listB))
+        result = []
+        for a in range(0, len(listA)):
+            result.append(listA[a]*listBre[a])
+        return result
+    
+#Spiral Matrix
+class Solution(object):
+    def spiralOrder(self, matrix):
+        if matrix == []:
+            return []
+        k = 0
+        l = 0
+        m = len(matrix) - 1
+        n = len(matrix[0]) - 1
+        direction = 0
+        res = []
+        while True:
+            if direction == 0:
+                for i in range(l, n+1):
+                    res.append(matrix[k][i])
+                k += 1
+            if direction == 1:
+                for i in range(k, m+1):
+                    res.append(matrix[i][n])
+                n -= 1
+            if direction == 2:
+                for i in range(n, l-1, -1):
+                    res.append(matrix[m][i])
+                m -= 1
+            if direction == 3:
+                for i in range(m, k-1, -1):
+                    res.append(matrix[i][l])
+                l += 1
+            if l > n or k > m:
+                return res
+            direction = (direction + 1) % 4
+            
+#4Sum II
+class Solution(object):
+    def fourSumCount(self, A, B, C, D):
+        res = 0
+        cnt = collections.defaultdict(int)
+        for a in A:
+            for b in B:
+                cnt[a+b] += 1
+        for c in C:
+            for d in D:
+                res += cnt[-(c+d)]
+        return res
+    
+#Container With Most Water
+class Solution(object):
+    def maxArea(self, height):
+        if len(height) == 0:
+            return 0
+        left = 0
+        right = len(height) - 1
+        area = 0
+        while left < right:
+            area = max(area, (right - left)*min(height[left], height[right]))
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return area
+    
+#First Missing Positive
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        n = len(nums)
+        for i in range(n):
+            while nums[i] > 0 and nums[i] <= n and nums[i] != i + 1 and nums[i] != nums[nums[i] - 1]:
+                nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+        for i in range(0, n):
+            if i+1 != nums[i]:
+                return i+1
+        return n+1

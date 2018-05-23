@@ -1221,3 +1221,60 @@ class Solution(object):
             if i+1 != nums[i]:
                 return i+1
         return n+1
+    
+#Longest Consecutive Sequence
+class Solution(object):
+    def longestConsecutive(self, nums):
+        if len(nums) == 0:
+            return 0
+        if len(nums) == 1:
+            return 1
+        nums_new =sorted(nums)
+        count = 1
+        res = []
+        for i in range(0, len(nums_new)-1):
+            if nums_new[i+1] - nums_new[i] == 1:
+                count += 1
+            elif nums_new[i+1] - nums_new[i] == 0:
+                count += 0
+            else:
+                res.append(count)
+                count = 1
+        res.append(count)
+        return max(res)
+    
+#Basic Calculator II
+class Solution(object):
+    def calculate(self, s):
+        tokens = iter(re.findall('\d+|\S', s))
+        res = 0
+        sign = 1
+        for token in tokens:
+            if token.isdigit():
+                num = int(token)
+            elif token in '+-':
+                res += sign * num
+                sign = 1 if token == '+' else -1
+            else:
+                temp = int(next(tokens))
+                num = num * temp if token == '*' else num // temp
+        return res + sign * num
+    
+#Sliding Window Maximum
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        if len(nums) == 0 or k > len(nums):
+            return []
+        res = []
+        for i in range(0, len(nums)-k+1):
+            xs = nums[i : i + k]
+            res.append(max(xs))
+        return res
+    
+#Wiggle Sort II
+class Solution(object):
+    def wiggleSort(self, nums):
+        new_nums = sorted(nums)
+        size = len(nums)
+        for x in range(1, size, 2) + range(0, size, 2):
+            nums[x] = new_nums.pop()

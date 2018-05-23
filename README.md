@@ -68,3 +68,7 @@ These are my solutions to the problems in Leetcode.<br/>
 66. 4Sum II
 67. Container With Most Water
 68. First Missing Positive
+69. Longest Consecutive Sequence
+70. Basic Calculator II
+71. Sliding Window Maximum
+72. Wiggle Sort II

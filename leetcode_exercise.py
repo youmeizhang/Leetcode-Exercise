@@ -1278,3 +1278,44 @@ class Solution(object):
         size = len(nums)
         for x in range(1, size, 2) + range(0, size, 2):
             nums[x] = new_nums.pop()
+
+#Max Points on a Line
+class Solution:
+    def maxPoints(self, points):
+        if len(points) <= 1:
+            return len(points)
+        maxpoint = 1
+        for i in range(0, len(points)-1):
+            vertical = 1
+            slopes = {}
+            samepoints = 0
+            curmax = 1
+            for j in range(i+1, len(points)):
+                if points[i].x == points[j].x and points[i].y == points[j].y:
+                    samepoints += 1
+                    continue
+                elif points[i].x == points[j].x:
+                    vertical += 1
+                else:
+                    slop = (points[i].y - points[j].y) * 1.0/ (points[i].x - points[j].x)
+                    slopes.setdefault(slop, 1)
+                    slopes[slop] += 1
+                    if slopes[slop] > curmax:
+                        curmax = slopes[slop]
+            maxpoint = max(max(curmax, vertical)+samepoints, maxpoint)
+        return maxpoint
+
+#Kth Smallest Element in a Sorted Matrix
+class Solution:
+    def kthSmallest(self, matrix, k):
+        low = matrix[0][0]
+        high = matrix[-1][-1]
+        loc = 0
+        while low <= high:
+            mid = (low + high) >>1
+            loc = sum(bisect.bisect_right(m, mid) for m in matrix)
+            if loc >= k:
+                high = mid -1
+            else:
+                low = mid + 1
+        return low

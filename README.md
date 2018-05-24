@@ -72,3 +72,5 @@ These are my solutions to the problems in Leetcode.<br/>
 70. Basic Calculator II
 71. Sliding Window Maximum
 72. Wiggle Sort II
+73. Max Points on a Line
+74. Kth Smallest Element in a Sorted Matrix

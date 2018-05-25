@@ -74,3 +74,5 @@ These are my solutions to the problems in Leetcode.<br/>
 72. Wiggle Sort II
 73. Max Points on a Line
 74. Kth Smallest Element in a Sorted Matrix
+75. Find Pivot Index
+76. Merge k Sorted Lists

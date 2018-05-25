@@ -1319,3 +1319,47 @@ class Solution:
             else:
                 low = mid + 1
         return low
+
+#Find Pivot Index
+class Solution:
+    def pivotIndex(self, nums):
+        add_sum = sum(nums)
+        left_sum = 0
+        for i in range(0, len(nums)):
+            add_sum -= nums[i]
+            if add_sum == left_sum:
+                return i
+            else:
+                left_sum += nums[i]
+        return -1
+    
+#Merge k Sorted Lists
+class Solution:
+    def mergeKLists(self, lists):
+        n = len(lists)
+        if not lists or n == 0:
+            return None
+        elif n == 1:
+            return lists[0]
+        elif n == 2:
+            return self.mergeTwoLists(lists[0], lists[1])
+        else:
+            mid = int(n / 2)
+            return self.mergeKLists([self.mergeKLists(lists[:mid]), self.mergeKLists(lists[mid:])])
+            
+    def mergeTwoLists(self, l1, l2):
+        dummy = curr = ListNode(0)
+        while l1 and l2:
+            if l1.val < l2.val:
+                curr.next = l1
+                l1 = l1.next
+                curr = curr.next
+            else:
+                curr.next = l2
+                l2 = l2.next
+                curr = curr.next
+        if l1:
+            curr.next = l1
+        if l2:
+            curr.next = l2
+        return dummy.next

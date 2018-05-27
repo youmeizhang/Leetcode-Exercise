@@ -1363,3 +1363,41 @@ class Solution:
         if l2:
             curr.next = l2
         return dummy.next
+    
+#Diagonal Traverse (time limit)
+class Solution(object):
+    def findDiagonalOrder(self, matrix):
+        if len(matrix) == 0:
+            return []
+        m = len(matrix)
+        n = len(matrix[0])
+        res = []
+        for i in range(0, n+(m-1)):
+            if i % 2 == 0:
+                for j in range(0, i+1):
+                    if j >= n or (i-j) >= m:
+                        continue
+                    else:
+                        res.append(matrix[i-j][j])
+            else:
+                for j in range(0, i+1):
+                    if j >= m or (i-j) >= n:
+                        continue
+                    else:
+                        res.append(matrix[j][i-j])
+        return res
+    
+#Largest Number At Least Twice of Others
+class Solution(object):
+    def dominantIndex(self, nums):
+        if len(nums) == 0:
+            return -1
+        if len(nums) == 1:
+            return 0
+        new_nums = sorted(nums)
+        max_1 = new_nums[len(new_nums) -1 ]
+        max_2 = new_nums[len(new_nums) - 2]
+        if max_1 >= max_2 * 2:
+            return nums.index(max_1)
+        else:
+            return -1

@@ -76,3 +76,5 @@ These are my solutions to the problems in Leetcode.<br/>
 74. Kth Smallest Element in a Sorted Matrix
 75. Find Pivot Index
 76. Merge k Sorted Lists
+77. Diagonal Traverse
+78. Largest Number At Least Twice of Others

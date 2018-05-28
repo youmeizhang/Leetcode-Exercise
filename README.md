@@ -78,3 +78,5 @@ These are my solutions to the problems in Leetcode.<br/>
 76. Merge k Sorted Lists
 77. Diagonal Traverse
 78. Largest Number At Least Twice of Others
+80. Add Binary
+81. Array Partition I

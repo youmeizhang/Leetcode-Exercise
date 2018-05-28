@@ -1401,3 +1401,68 @@ class Solution(object):
             return nums.index(max_1)
         else:
             return -1
+        
+#Diagonal Traverse
+class Solution:
+    def findDiagonalOrder(self, matrix):
+        if not matrix: return []
+        i, j, k =0, 0, 1
+        w, h = len(matrix), len(matrix[0])
+        ans = []
+        for x in range(w * h):
+            ans.append(matrix[i][j])
+            if k > 0:
+                di, dj = i-1, j+1
+            else:
+                di, dj = i+1, j-1
+            if 0 <=di <w and 0 <=dj <h:
+                i,j = di, dj
+            else:
+                if k > 0:
+                    if j+1 < h:
+                        j = j + 1
+                    else:
+                        i = i+1
+                else:
+                    if i+1 < w:
+                        i = i + 1
+                    else:
+                        j = j + 1
+                k*=-1
+        return ans
+    
+#Add Binary
+class Solution:
+    def addBinary(self, a, b):
+        m = len(a)
+        n = len(b)
+        maxLen = max(m, n)
+        carry = 0
+        result = ""
+        for i in range(maxLen):
+            x = int(a[m - 1 - i]) if i < m else 0
+            y = int(b[n - 1 - i]) if i < n else 0
+            
+            sum1 = x + y + carry
+            result = str(int(sum1 % 2)) + result
+            carry = int(sum1 / 2)
+            
+        if carry > 0:
+            return "1" + result
+        else:
+            return result
+#Array Partition I
+class Solution:
+    def arrayPairSum(self, nums):
+        if len(nums) == 2:
+            return min(nums[0], nums[1])
+        new_nums = sorted(nums)
+        n = int(len(nums) / 2)
+        
+        sum = 0
+        even = nums[1::2]
+        odd = nums[0::2]
+        
+        for i in range(0, n):
+            sum = sum + min(even[i], odd[i])
+        return sum

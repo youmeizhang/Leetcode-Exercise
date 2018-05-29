@@ -1460,9 +1460,40 @@ class Solution:
         n = int(len(nums) / 2)
         
         sum = 0
-        even = nums[1::2]
-        odd = nums[0::2]
+        even = new_nums[1::2]
+        odd = new_nums[0::2]
         
         for i in range(0, n):
-            sum = sum + min(even[i], odd[i])
+            sum = sum + odd[i]
         return sum
+#Remove Element
+class Solution:
+    def removeElement(self, nums, val):
+        n = len(nums) - 1
+        idx1 = 0
+        idx2 = n
+        j = 0
+        for i in range(n, -1, -1):
+            if nums[i] == val:
+                nums[i], nums[idx2] = nums[idx2], nums[i]
+                idx2 -= 1
+        return idx2 + 1
+#Max Consecutive Ones
+class Solution:
+    def findMaxConsecutiveOnes(self, nums):
+        res = []
+        count = 0
+        for i in range(len(nums)):
+            if nums[i] == 1 or (nums[i] == 1 and i == len(nums) - 1):
+                count += 1
+                res.append(count)
+            else:
+                if count > 0:
+                    res.append(count)
+                    count = 0
+                else:
+                    continue
+        if len(res) != 0:
+            return max(res)
+        else:
+            return 0

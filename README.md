@@ -80,3 +80,5 @@ These are my solutions to the problems in Leetcode.<br/>
 78. Largest Number At Least Twice of Others
 80. Add Binary
 81. Array Partition I
+82. Remove Element
+83. Max Consecutive Ones

@@ -1497,3 +1497,33 @@ class Solution:
             return max(res)
         else:
             return 0
+#Minimum Size Subarray Sum
+class Solution:
+    def minSubArrayLen(self, s, nums):
+        head = 0
+        n = len(nums)
+        sum = 0
+        res = float('inf')
+        for i in range(0 ,n):
+            sum += nums[i]
+            
+            while sum >= s:
+                sum -= nums[head]
+                res = min(i-head+1, res)
+                head += 1
+        return res if res <= n else 0
+#Reverse Words in a String    
+class Solution(object):
+    def reverseWords(self, s):
+        self.reverse(s, 0, len(s))
+        i = 0
+        for j in range(0, len(s) + 1):
+            if j == len(s) or s[j] == ' ':
+                self.reverse(s, i, j)
+                i = j + 1
+        
+    def reverse(self, s, l, r):
+        for i in range((r - l) / 2):
+            tmp = s[l + i]
+            s[l + i] = s[r - 1 - i]
+            s[r - 1 - i] = tmp

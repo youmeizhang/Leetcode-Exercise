@@ -82,3 +82,5 @@ These are my solutions to the problems in Leetcode.<br/>
 81. Array Partition I
 82. Remove Element
 83. Max Consecutive Ones
+84. Minimum Size Subarray Sum
+85. Reverse Words in a String

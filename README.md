@@ -84,3 +84,5 @@ These are my solutions to the problems in Leetcode.<br/>
 83. Max Consecutive Ones
 84. Minimum Size Subarray Sum
 85. Reverse Words in a String
+86. Reverse Words in a String III
+87. Pascal's Triangle II

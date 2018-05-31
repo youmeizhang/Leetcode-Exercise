@@ -1542,3 +1542,78 @@ class Solution(object):
             for j in range(1, i):
                 list1[i][j] = list1[i-1][j-1] + list1[i-1][j]
         return list1[rowIndex]
+    
+#Linked List Cycle
+class Solution(object):
+    def hasCycle(self, head):
+        if head == None or head.next == None:
+            return False
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+    
+#Linked List Cycle II
+class Solution(object):
+    def detectCycle(self, head):
+        slow = fast = head
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            
+            if id(slow) == id(fast):
+                fast = head
+                while fast != slow:
+                    slow = slow.next
+                    fast = fast.next
+                return slow
+        return None
+    
+#Reverse Linked List
+class Solution(object):
+    def reverseList(self, head):
+        prev = None
+        
+        while head:
+            tmp = head.next
+            head.next = prev
+            prev = head
+            head = tmp
+        return prev
+    
+#Remove Linked List Elements
+class Solution(object):
+    def removeElements(self, head, val):
+        dummy = cur = ListNode(0)
+        dummy.next = head
+        
+        while cur and cur.next:
+            if cur.next.val == val:
+                cur.next = cur.next.next
+            else:
+                cur = cur.next
+                
+        return dummy.next
+    
+#Odd Even Linked List
+class Solution(object):
+    def oddEvenList(self, head):
+        if head == None:
+            return head
+        odd = oddHead = head
+        even = evenHead = head.next
+        
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+        
+        odd.next = evenHead
+        return oddHead
+    
+#

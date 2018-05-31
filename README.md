@@ -86,3 +86,8 @@ These are my solutions to the problems in Leetcode.<br/>
 85. Reverse Words in a String
 86. Reverse Words in a String III
 87. Pascal's Triangle II
+88. Linked List Cycle
+89. Linked List Cycle II
+90. Reverse Linked List
+91. Remove Linked List Elements
+92. Odd Even Linked List

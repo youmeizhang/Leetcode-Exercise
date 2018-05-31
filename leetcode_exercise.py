@@ -1515,15 +1515,30 @@ class Solution:
 #Reverse Words in a String    
 class Solution(object):
     def reverseWords(self, s):
-        self.reverse(s, 0, len(s))
-        i = 0
-        for j in range(0, len(s) + 1):
-            if j == len(s) or s[j] == ' ':
-                self.reverse(s, i, j)
-                i = j + 1
-        
-    def reverse(self, s, l, r):
-        for i in range((r - l) / 2):
-            tmp = s[l + i]
-            s[l + i] = s[r - 1 - i]
-            s[r - 1 - i] = tmp
+        return " ".join(s.split()[::-1])
+    
+#Reverse Words in a String III
+class Solution(object):
+    def reverseWords(self, s):
+        str1 = ""
+        for i in s.split():
+            str1 += str(i[::-1])
+            str1 += " "
+        str1 = str1[:-1]
+        return str1
+    
+#Pascal's Triangle II
+class Solution(object):
+    def getRow(self, rowIndex):
+        if rowIndex == 0:
+            return [1]
+        if rowIndex == 1:
+            return [1, 1]
+        list1 = [[] for i in range(0, rowIndex + 1)]
+        list1[0] = [1]
+        list1[1] = [1, 1]
+        for i in range(2, rowIndex + 1):
+            list1[i] = [1 for j in range(0, i+1)]
+            for j in range(1, i):
+                list1[i][j] = list1[i-1][j-1] + list1[i-1][j]
+        return list1[rowIndex]

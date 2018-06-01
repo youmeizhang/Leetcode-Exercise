@@ -1641,3 +1641,26 @@ class Solution:
             tmp.next = l2
             
         return dummy.next
+#Add Two Numbers
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        dummy = curr = ListNode(-1)
+        carry = 0
+        
+        while l1 or l2:
+            a = l1.val if l1 else 0
+            b = l2.val if l2 else 0
+            
+            sum = a + b + carry
+            carry = int(sum / 10)
+            curr.next = ListNode(int(sum % 10))
+            curr = curr.next
+            
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
+                
+        if carry > 0:
+            curr.next = ListNode(1)
+        return dummy.next

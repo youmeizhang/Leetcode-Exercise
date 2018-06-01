@@ -1616,4 +1616,28 @@ class Solution(object):
         odd.next = evenHead
         return oddHead
     
-#
+#Merge Two Sorted Lists
+class Solution:
+    def mergeTwoLists(self, l1, l2):
+        if l1 == None:
+            return l2
+        if l2 == None:
+            return l1
+        dummy = ListNode(0)
+        tmp = dummy
+        while l1 and l2:
+            if l1.val <= l2.val:
+                tmp.next = l1
+                l1 = l1.next
+                tmp = tmp.next
+            else:
+                tmp.next = l2
+                l2 = l2.next
+                tmp = tmp.next
+                
+        if l2 == None:
+            tmp.next = l1
+        else:
+            tmp.next = l2
+            
+        return dummy.next

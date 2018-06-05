@@ -91,3 +91,6 @@ These are my solutions to the problems in Leetcode.<br/>
 90. Reverse Linked List
 91. Remove Linked List Elements
 92. Odd Even Linked List
+93. Coin Change
+94. Copy List with Random Pointer
+95. Rotate List

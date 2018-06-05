@@ -1664,3 +1664,54 @@ class Solution:
         if carry > 0:
             curr.next = ListNode(1)
         return dummy.next
+#Coin Change
+class Solution(object):
+    def coinChange(self, coins, amount):
+        inf = 0x7ffffffe
+        dp = [0] + [inf] * amount
+        for i in range(0, amount + 1):
+            for coin in coins:
+                if i + coin <= amount:
+                    dp[i+coin] = min(dp[i+coin], dp[i] + 1)
+        return dp[amount] if dp[amount] != inf else -1
+    
+#Copy List with Random Pointer
+class Solution(object):
+    def copyRandomList(self, head):
+        dict = {}
+        m = n = head
+        
+        while m:
+            dict[m] = RandomListNode(m.label)
+            m = m.next
+            
+        while n:
+            dict[n].next = dict.get(n.next)
+            dict[n].random = dict.get(n.random)
+            n = n.next
+            
+        return dict.get(head)
+#Rotate List
+class Solution:
+    def rotateRight(self, head, k):
+        if k == 0:
+            return head
+        if head == None:
+            return head
+        dummy = ListNode(0)
+        dummy.next = head
+        length = 0
+        p = dummy
+        while p.next:
+            p = p.next
+            length += 1
+
+        p.next = dummy.next
+        step = length - (k % length)
+        for i in range(0, step):
+            p = p.next
+
+        head = p.next
+        p.next = None
+
+        return head

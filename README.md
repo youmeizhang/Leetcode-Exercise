@@ -94,3 +94,5 @@ These are my solutions to the problems in Leetcode.<br/>
 93. Coin Change
 94. Copy List with Random Pointer
 95. Rotate List
+96. Sort List
+97. Maximum Product Subarray

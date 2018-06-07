@@ -1753,3 +1753,23 @@ class Solution:
         head = self.merge(head1, head2)
         return head
             
+#Maximum Product Subarray
+class Solution:
+    def maxProduct(self, nums):
+        n = len(nums)
+        if not nums or n == 0:
+            return 0
+        
+        pos = [0] * n
+        neg = [0] * n
+        max_pro = [0] * n
+        
+        pos[0] = neg[0] = max_pro[0] = nums[0]
+        for i in range(1, n):
+            a = nums[i] * pos[i-1]
+            b = nums[i] * neg[i-1]
+            
+            pos[i] = max(max(a, b), nums[i])
+            neg[i] = min(min(a, b), nums[i])
+            max_pro[i] = max(max_pro[i-1], pos[i])
+        return max_pro[n-1]

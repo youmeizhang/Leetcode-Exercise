@@ -96,3 +96,6 @@ These are my solutions to the problems in Leetcode.<br/>
 95. Rotate List
 96. Sort List
 97. Maximum Product Subarray
+98. Decode Ways
+99. Best Time to Buy and Sell Stock with Cooldown
+100. Perfect Squares

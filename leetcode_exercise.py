@@ -1773,3 +1773,55 @@ class Solution:
             neg[i] = min(min(a, b), nums[i])
             max_pro[i] = max(max_pro[i-1], pos[i])
         return max_pro[n-1]
+    
+#Decode Ways
+class Solution:
+    def numDecodings(self, s):
+        n = len(s)
+        dp = [0] * (n+1)
+        dp[0] = 1
+        
+        if int(s[0]) != 0:
+            dp[1] = 1
+        
+        for i in range(2, n+1):
+            if int(s[i-1]) != 0:
+                dp[i] += dp[i-1]
+            two = int(s[i-2] + s[i-1])
+            if two <= 26 and two >= 10:
+                dp[i] += dp[i-2]
+        return dp[n]
+    
+#Best Time to Buy and Sell Stock with Cooldown
+class Solution:
+    def maxProfit(self, prices):
+        n = len(prices)
+        if n == 0 or not prices:
+            return 0
+        hold = [0] * n
+        unhold = [0] * n
+        hold[0] = -prices[0]
+        
+        for i in range(1, n):
+            if i == 1:
+                hold[i] = max(hold[i-1], -prices[1])
+            else:
+                hold[i] = max(hold[i-1], unhold[i-2] - prices[i])
+            unhold[i] = max(hold[i-1] + prices[i], unhold[i-1])
+        return unhold[n-1]
+    
+#Perfect Squares
+class Solution:
+    def numSquares(self, n):
+        dp = [n] * (n+1)
+        
+        for i in range(0, n):
+            if i * i <= n:
+                dp[i * i] = 1
+                
+        for i in range(1, n+1):
+            for j in range(0, i):
+                if i + j * j <= n:
+                    dp[i + j*j] = min(dp[i]+1, dp[i + j*j])
+        return dp[n]
+    

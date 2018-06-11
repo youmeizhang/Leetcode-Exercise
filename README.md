@@ -1,5 +1,4 @@
 # Leetcode-Exercise
-These are my solutions to the problems in Leetcode.<br/>
 1. Contains Duplicate<br/>
 2. Intersection of two Arrays <br/>
 3. Happy Number<br/>
@@ -99,3 +98,5 @@ These are my solutions to the problems in Leetcode.<br/>
 98. Decode Ways
 99. Best Time to Buy and Sell Stock with Cooldown
 100. Perfect Squares
+101. Shifting Letters
+102. Maximize Distance to Closest Person

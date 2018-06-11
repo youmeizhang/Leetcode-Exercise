@@ -1825,3 +1825,34 @@ class Solution:
                     dp[i + j*j] = min(dp[i]+1, dp[i + j*j])
         return dp[n]
     
+#Shifting Letters
+class Solution(object):
+    def shiftingLetters(self, S, shifts):     
+        total = sum(shifts)
+        shift_new = []
+        for i in shifts:
+            shift_new.append(total)
+            total -= i    
+        res = ''
+        for i in range(0, len(S)):
+            tmp = self.shiftALetter(S[i], shift_new[i])
+            res += tmp
+        return res
+        
+    def shiftALetter(self, s, shift_time):
+        shifted = ord(s) + (shift_time % 26)
+        return chr(shifted if shifted <= ord('z') else shifted - 26)
+    
+##Maximize Distance to Closest Person
+class Solution(object):
+    def maxDistToClosest(self, seats):
+        prev = -1
+        res = 1
+        for i in range(0, len(seats)):
+            if seats[i]:
+                if prev < 0:
+                    res = i
+                else:
+                    res = max(res, (i-prev)//2)
+                prev = i
+        return max(res, len(seats) - 1 - prev)

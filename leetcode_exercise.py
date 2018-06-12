@@ -1856,3 +1856,58 @@ class Solution(object):
                     res = max(res, (i-prev)//2)
                 prev = i
         return max(res, len(seats) - 1 - prev)
+#Word Break
+class Solution:
+    def wordBreak(self, s, wordDict):
+        n = len(s)
+        if not s or n == 0:
+            return False
+        dp = [False] * (n + 1)
+        dp[0] = True
+        
+        for i in range(1, n+1):
+            for j in range(0, i):
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i] = True
+                    break
+        return dp[-1]
+    
+#Word Break II
+class Solution:
+    def wordBreak(self, s, wordDict):
+        if not s:
+            return []
+        n = len(s)
+        dp = [[] for x in range(n+1)]
+        dp[0] = [0]
+        for i in range(1, n+1):
+            for j in range(i):
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i].append(j)
+        res = []
+        self.backTracking(dp, s, n, res, '')
+        return res
+    
+    def backTracking(self, dp, s, idx, res, line):
+        for i in dp[idx]:
+            newline = s[i:idx] + ' '+ line if line else s[i:idx]
+            
+            if i == 0:
+                res.append(newline)
+            else:
+                self.backTracking(dp, s, i, res, newline)
+                
+#Burst Balloons
+class Solution:
+    def maxCoins(self, nums):
+        n = len(nums)
+        nums = [1] + nums + [1]
+        dp = [[0 for j in range(n+2)] for i in range(n+2)]
+        
+        def DP(i, j):
+            if dp[i][j] > 0:
+                return dp[i][j]
+            for x in range(i, j+1):
+                dp[i][j] = max(dp[i][j], DP(i, x-1)+nums[i-1] * nums[x] * nums[j +1] + DP(x+1, j))
+            return dp[i][j]
+        return DP(1, n)

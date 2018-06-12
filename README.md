@@ -100,3 +100,6 @@
 100. Perfect Squares
 101. Shifting Letters
 102. Maximize Distance to Closest Person
+103. Word Break
+104. Word Break II
+105. Burst Balloons

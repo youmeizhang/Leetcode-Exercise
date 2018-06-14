@@ -1911,3 +1911,68 @@ class Solution:
                 dp[i][j] = max(dp[i][j], DP(i, x-1)+nums[i-1] * nums[x] * nums[j +1] + DP(x+1, j))
             return dp[i][j]
         return DP(1, n)
+    
+#Replace Words
+class Solution:
+    def replaceWords(self, dict, sentence):
+        dict = set(dict)
+        
+        def replace(word):
+            for i in range(0, len(word)):
+                if word[:i] in dict:
+                    return word[:i]
+            return word
+        
+        return " ".join(map(replace, sentence.split()))
+
+#Add and Search Word - Data structure design
+class WordDictionary:
+
+    def __init__(self):
+        self.dict = collections.defaultdict(list)
+        """
+        Initialize your data structure here.
+        """
+        
+
+    def addWord(self, word):
+        n = len(word)
+        self.dict[n].append(word)
+        """
+        Adds a word into the data structure.
+        :type word: str
+        :rtype: void
+        """
+        
+
+    def search(self, word):
+        n = len(word)
+        if n not in self.dict.keys():
+            return False
+        
+        res = 0
+        for w in self.dict[n]:
+            if self.isWord(word, w):
+                res += 1
+        return res > 0
+            
+        
+    def isWord(self, a, b):
+        for i, c in enumerate(a):
+            if c != '.' and c != b[i]:
+                return False
+        return True
+    
+#Maximum XOR of Two Numbers in an Array
+class Solution:
+    def findMaximumXOR(self, nums):
+        mask = ans = 0
+        for x in range(32)[::-1]:
+            mask += 1 << x
+            prefixSet = set([n & mask for n in nums])
+            tmp = ans | 1 << x
+            for prefix in prefixSet:
+                if tmp ^ prefix in prefixSet:
+                    ans = tmp
+                    break
+        return ans

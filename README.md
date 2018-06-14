@@ -103,3 +103,6 @@
 103. Word Break
 104. Word Break II
 105. Burst Balloons
+106. Replace Words 
+107. Add and Search Word - Data structure design  
+108. Maximum XOR of Two Numbers in an Array

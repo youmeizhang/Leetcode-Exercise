@@ -1924,7 +1924,48 @@ class Solution:
             return word
         
         return " ".join(map(replace, sentence.split()))
+    
+#replace words (Trie)
+class TrieNode:
+    def __init__(self):
+        self.children = dict()
+        self.isWord = False
 
+class Trie:
+
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for letter in word:
+            child = node.children.get(letter)
+            if child is None:
+                child = TrieNode()
+                node.children[letter] = child
+            node = child
+        node.isWord = True
+
+    def search(self, word):
+        ans = ''
+        node = self.root
+        for letter in word:
+            node = node.children.get(letter)
+            if node is None: break
+            ans += letter
+            if node.isWord: return ans
+        return word
+    
+class Solution(object):
+    def replaceWords(self, dict, sentence):
+        trie = Trie()
+        ans = []
+        for word in dict:
+            trie.insert(word)
+        for word in sentence.split():
+            ans.append(trie.search(word))
+        return ' '.join(ans)    
+    
 #Add and Search Word - Data structure design
 class WordDictionary:
 
@@ -1975,4 +2016,73 @@ class Solution:
                 if tmp ^ prefix in prefixSet:
                     ans = tmp
                     break
+        return ans
+class TrieNode:
+    def __init__(self):
+        self.childs = dict()
+        self.isWord = False
+
+class Trie:
+
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for letter in word:
+            child = node.childs.get(letter)
+            if child is None:
+                child = TrieNode()
+                node.childs[letter] = child
+            node = child
+        node.isWord = True
+
+    def delete(self, word):
+        node = self.root
+        queue = []
+        for letter in word:
+            queue.append((letter, node))
+            child = node.childs.get(letter)
+            if child is None:
+                return False
+            node = child
+        if not node.isWord:
+            return False
+        if len(node.childs):
+            node.isWord = False
+        else:
+            for letter, node in reversed(queue):
+                del node.childs[letter]
+                if len(node.childs) or node.isWord:
+                    break
+        return True
+    
+#word search II        
+class Solution(object):
+    def findWords(self, board, words):
+        ans = []
+        tree = Trie()
+        visited = [[False] * len(board[0]) for _ in range(len(board))]
+        for i in range(len(words)):
+            tree.insert(words[i])
+
+        def dfs(x, y, root, word):
+            root = root.childs.get(board[x][y])
+            if not root:
+                return
+            visited[x][y] = True
+            for dx, dy in zip((1, 0, -1, 0), (0, 1, 0, -1)):
+                nx = x + dx
+                ny = y + dy
+                if nx < 0 or ny < 0 or nx > len(board) - 1 or ny > len(board[0]) - 1 or visited[nx][ny]:
+                    continue
+                dfs(nx, ny, root, word + board[nx][ny])
+            if root.isWord:
+                ans.append(word)
+                tree.delete(word)
+            visited[x][y] = False
+            
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                dfs(i, j, tree.root, board[i][j])
         return ans

@@ -2086,3 +2086,42 @@ class Solution(object):
             for j in range(len(board[0])):
                 dfs(i, j, tree.root, board[i][j])
         return ans
+#Palindrome Pairs
+class Solution(object):
+    def palindromePairs(self, words):
+        res = set()
+        wrap = {y: x for x, y in enumerate(words)}
+    
+        def isPalindrome(word):
+            n = len(word)
+            for i in range(int(n / 2)):
+                if word[i] != word[n - i - 1]:
+                    return False
+            return True
+
+        for idx, word in enumerate(wrap):
+            if " " in wrap and word != " " and isPalindrome(word):
+                bidx = wrap[" "]
+                res.add((bidx, idx))
+                res.add((idx, bidx))
+    
+            rword = word[::-1]
+            if rword in wrap:
+                ridx = wrap[rword]
+                if ridx != idx:
+                    res.add((ridx, idx))
+                    res.add((idx, ridx))
+            
+            for x in range(len(word)):
+                left, right = word[:x], word[x:]
+                rleft, rright = left[::-1], right[::-1]
+                if isPalindrome(left) and rright in wrap:
+                    ridx = wrap[rright]
+                    if ridx != idx:
+                        res.add((ridx, idx))
+
+                if isPalindrome(right) and rleft in wrap:
+                    lidx = wrap[rleft]
+                    if lidx != idx:
+                        res.add((idx, lidx))
+        return list(res) 

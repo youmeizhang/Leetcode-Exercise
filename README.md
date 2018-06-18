@@ -106,3 +106,5 @@
 106. Replace Words 
 107. Add and Search Word - Data structure design  
 108. Maximum XOR of Two Numbers in an Array
+109. Peak Index in a Mountain Array
+110. Queue Reconstruction by Height

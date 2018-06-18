@@ -2125,3 +2125,41 @@ class Solution(object):
                     if lidx != idx:
                         res.add((idx, lidx))
         return list(res) 
+    
+#Peak Index in a Mountain Array
+class Solution(object):
+    def peakIndexInMountainArray(self, A):
+        if len(A) == 0:
+            return 0
+        left, right = 0, len(A) - 1
+        while left < right:
+            mid = int((left + right) / 2)
+            if A[mid - 1] < A[mid] and A[mid] < A[mid + 1]:
+                left = mid
+            elif A[mid - 1] > A[mid] and A[mid] > A[mid + 1]:
+                right = mid  
+            else:
+                break
+        return mid
+    
+#Queue Reconstruction by Height
+class Solution(object):
+    def reconstructQueue(self, people):
+        if len(people) == 0:
+            return []
+        people_obj, res, height = {}, [], []
+        for i in range(0, len(people)):
+            p = people[i]
+            if p[0] in people_obj:
+                people_obj[p[0]] += (p[1], i),
+            else:
+                people_obj[p[0]] = [(p[1], i)]
+                height += (p[0]),
+        
+        height.sort()
+
+        for i in height[::-1]:
+            people_obj[i].sort()
+            for p in people_obj[i]:
+                res.insert(p[0], people[p[1]])
+        return res

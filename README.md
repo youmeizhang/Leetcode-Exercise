@@ -108,3 +108,9 @@
 108. Maximum XOR of Two Numbers in an Array
 109. Peak Index in a Mountain Array
 110. Queue Reconstruction by Height
+111. Trapping Rain Water
+112. Largest Rectangle in Histogram
+113. Course Schedule
+114. Course Schedule II
+115. Longest Increasing Path in a Matrix 
+116. Friend Circles

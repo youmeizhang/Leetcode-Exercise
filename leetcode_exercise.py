@@ -2163,3 +2163,148 @@ class Solution(object):
             for p in people_obj[i]:
                 res.insert(p[0], people[p[1]])
         return res
+    
+#Trapping Rain Water
+def trap(self, height):
+    res = 0
+    rightmax = leftmax = 0
+    left, right = 0, len(height)-1
+    while(left < right):
+        if height[left] < height[right]:
+            leftmax = max(height[left], leftmax)
+            res += leftmax - height[left]
+            left += 1
+        else:
+            rightmax = max(height[right], rightmax)
+            res += rightmax - height[right]
+            right -= 1
+    return res
+
+#Largest Rectangle in Histogram
+def largestRectangleArea(heights):
+    stack = []
+    i = 0
+    area = 0
+    while i < len(heights):
+        if stack == [] or heights[i] > heights[stack[len(stack)-1]]:
+            stack.append(i)
+        else:
+            curr = stack.pop()
+            width = i if stack == [] else i - stack[len(stack)-1]-1
+            area = max(area, width * heights[curr])
+            i -= 1
+        i += 1
+    while stack != []:
+        curr = stack.pop()
+        width = i if stack == [] else len(heights) - stack[len(stack) - 1] - 1
+        area = max(area, width * heights[curr])
+    return area
+
+#Course Schedule
+class Solution(object):
+    def canFinish(self, num, pre):
+        if num<2 or len(pre)<2:
+            return True
+        while True:
+            count=0
+            mark = [True]*num
+            for p in pre:
+                mark[p[0]-1] = False
+            for p in pre:
+                if mark[p[1]-1]:
+                    count+=1
+                    res.append(p[1]-1)
+                    pre.remove(p)
+            if pre == []:
+                return True
+            elif count == 0:
+                return False
+            
+#Course Schedule (second solution)
+def canFinish(self, num, pre):
+    graph = {i: [] for i in range(num)}
+    indegree = [0] * num
+    for a, b in pre:
+        graph[b].append(a)
+        indegree[a] += 1
+    zero = []
+    for i in range(num):
+        if indegree[i] == 0:
+            zero.append(i)
+    while zero:
+        cur = zero.pop(0)
+        if cur in graph:
+            tmp = graph[cur]
+            del graph[cur]
+        
+            for n in tmp:
+                indegree[n] -= 1
+                if indegree[n] == 0:
+                    zero.append(n)
+    return len(graph) == 0 and sum(indegree) == 0
+
+#Course Schedule II
+def findOrder(self, num, pre):
+    res = []
+    graph = {i: [] for i in range(num)}
+    indegree = [0] * num
+    for a, b in pre:
+        graph[b].append(a)
+        indegree[a] += 1
+    zero = []
+    for i in range(num):
+        if indegree[i] == 0:
+            zero.append(i)
+            
+    while zero:
+        cur = zero.pop(0)
+        res.append(cur)
+        
+        if cur in graph:
+            tmp = graph[cur]
+            del graph[cur]
+        
+            for n in tmp:
+                indegree[n] -= 1
+                if indegree[n] == 0:
+                    zero.append(n)
+    return res if sum(indegree) == 0 else []
+
+#Longest Increasing Path in a Matrix 
+def longestIncreasingPath(self, matrix):
+    h = len(matrix)
+    if h == 0: return 0
+    w = len(matrix[0])
+    
+    def dfs(x, y):
+        for dx, dy in zip([1, 0, -1, 0], [0, 1, 0, -1]):
+            nx = x + dx
+            ny = y + dy
+            if 0 <= nx < h and 0 <= ny < w and matrix[nx][ny] > matrix[x][y]:
+                if not dp[nx][ny]: dp[nx][ny] = dfs(nx, ny)
+                dp[x][y] = max(dp[x][y], dp[nx][ny] + 1)
+        dp[x][y] = max(dp[x][y], 1)
+        return dp[x][y]
+
+    dp = [[0] * w for x in range(h)]
+    for i in range(h):
+        for j in range(w):
+            if not dp[i][j]:
+                dp[i][j] = dfs(i, j)
+    return max([max(x) for x in dp])
+
+#Friend Circles
+def findCircleNum(self, M):
+    cnt, N= 0, len(M)
+    vset = set()
+    def dfs(n):
+        for x in range(N):
+            if M[n][x] and x not in vset:
+                vset.add(x)
+                dfs(x)
+                
+    for x in range(N):
+        if x not in vset:
+            cnt += 1
+            dfs(x)
+    return cnt

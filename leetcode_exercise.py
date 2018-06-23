@@ -2308,3 +2308,53 @@ def findCircleNum(self, M):
             cnt += 1
             dfs(x)
     return cnt
+
+#Count of Smaller Numbers After Self
+class Solution(object):
+    def countSmaller(self, num):
+        idxes = {}
+        for k, v in enumerate(sorted(set(num))):
+            idxes[v] = k + 1
+        iNums = [idxes[x] for x in num]
+        ft = FenwickTree(len(iNums))
+        ans = [0] * len(num)
+        for i in range(len(iNums)-1, -1, -1):
+            ans[i] = ft.sum(iNums[i] - 1)
+            ft.add(iNums[i], 1)
+        return ans
+    
+class FenwickTree(object):
+    def __init__(self, n):
+        self.n = n
+        self.sums = [0] * (n + 1)
+    
+    def add(self, x, val):
+        while x <= self.n:
+            self.sums[x] += val
+            x += self.lowbit(x)
+            
+    def lowbit(self, x):
+        return x & -x
+    
+    def sum(self, x):
+        res = 0
+        while x > 0:
+            res += self.sums[x]
+            x -= self.lowbit(x)
+        return res
+    
+#Count of Smaller Numbers After Self (solution II)
+def countSmaller(num):
+    ipt = list(reversed(num)) #input
+    sort_num = list(set(sorted(num)))
+    ranks = [0] * len(num)
+    for i in range(len(num)):
+        tmp = ipt[i]
+        ranks[i] = sort_num.index(tmp) + 1
+    freq = [0] * (len(num) + 1)
+    res = []
+    for i in range(len(num)):
+        k = ranks[i]
+        freq[k] += 1
+        res.append(sum(freq[:k]))
+    return res[::-1]

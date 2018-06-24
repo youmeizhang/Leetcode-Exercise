@@ -115,3 +115,4 @@
 115. Longest Increasing Path in a Matrix 
 116. Friend Circles
 117. Count of Smaller Numbers After Self
+118. Buddy Strings

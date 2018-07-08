@@ -1,4 +1,35 @@
 #time limit
+#Solution 1
+class Solution(object):
+    def isPrime(self, num):
+        if num < 2:
+            return False
+        else:
+            n = int(math.sqrt(num)) + 1
+            for i in range(2, n):
+                if (num % i) == 0:
+                    return False
+                    break
+            else:
+                return True
+
+    def isNumberPalindrome(self, n):
+        return str(n) == str(n)[::-1]    
+
+    def primePalindrome(self, N):
+        while(not self.isPrime(N) or not self.isNumberPalindrome(N)):
+            N += 1
+            if N > 10**1 and N < 10**2 and N != 11:
+                N = 10**2
+            elif N > 10**3 and N < 10**4:
+                N = 10**4
+            elif N > 10**5 and N < 10**6:
+                N = 10**6
+            elif N > 10**7 and N < 10**8:
+                N = 10**8
+        return N
+    
+#Solution 2
 class Solution(object):
     def isNumberPalindrome(self, n):
         return str(n) == str(n)[::-1]

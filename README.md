@@ -1,4 +1,5 @@
 # Leetcode-Exercise
+(Answers to below questions are under leetcode_exercise.py)<br/>
 1. Contains Duplicate<br/>
 2. Intersection of two Arrays <br/>
 3. Happy Number<br/>

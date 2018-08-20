@@ -1,29 +1,33 @@
-#failed
 class Solution:
     def findAndReplacePattern(self, words, pattern):
-        n = len(words)
-        dic = defaultdict(int)
-        p = defaultdict(int)
+        dic = {}
         tmp = []
-        tmp2 = []
-        ans = []
-        for k in pattern:
-            if k not in p:
-                p[k] = 1
+        count = 1
+        res = []
+        for i in pattern:
+            if i in dic:
+                tmp.append(dic[i])
             else:
-                p[k] += 1
-        tmp2 = list(p.values())
-        print(tmp2)
-        for i in range(n):
-            for j in words[i]:
-                if j in dic:
-                    dic[j] += 1
-                else:
-                    dic[j] = 1
-            tmp = list(dic.values())
-            print(tmp)
-            if tmp == tmp2:
-                ans.append(words[i])
-            dic = defaultdict(int)
-        return ans
+                tmp.append(count)
+                dic[i] = count
+                count += 1
         
+        dic2 = {}
+        tmp2 = []
+        count = 1
+        for i in words:
+            for j in i:
+                if j in dic2:
+                    tmp2.append(dic2[j])
+                else:
+                    tmp2.append(count)
+                    dic2[j] = count
+                    count += 1
+                          
+            if tmp == tmp2:
+                res.append(i)
+            count = 1
+            dic2 = {}
+            tmp2 = []
+            
+        return res

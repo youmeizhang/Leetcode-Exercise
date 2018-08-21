@@ -1,3 +1,4 @@
+#TIME LIMIT
 class Solution:
     def findMaxForm(self, strs, m, n):
         dp = [[0] * (n + 1) for x in range(m + 1)]

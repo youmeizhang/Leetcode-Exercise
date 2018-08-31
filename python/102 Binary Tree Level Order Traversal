@@ -1,0 +1,14 @@
+class Solution:
+    def levelOrder(self, root):
+        if not root: return []
+        qa, res = [root], []
+        while qa:
+            qb = []
+            tmp = []
+            for n in qa:
+                if n.left: qb.append(n.left)
+                if n.right: qb.append(n.right)
+                tmp.append(n.val)
+            res.append(tmp)
+            qa = qb
+        return res

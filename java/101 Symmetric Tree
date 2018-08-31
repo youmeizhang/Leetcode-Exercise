@@ -1,0 +1,12 @@
+class Solution {
+    public boolean isSymmetricTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
+        return (p.val == q.val && isSymmetricTree(p.right, q.left) && isSymmetricTree(p.left, q.right));
+    }
+    
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) return true;
+        return isSymmetricTree(root.left, root.right);
+    }
+}

@@ -1,4 +1,30 @@
-#time limit
+#time limit (1)
+class Solution(object):
+    def oddEvenJumps(self, A):
+        higher = [1] * len(A)
+        lower = [1] * len(A)
+        i = len(A) - 2
+        while i >= 0:
+            tmp = A[i+1:]
+            try:
+                largest_min = max(x for x in tmp if x <= A[i])
+                if largest_min != -1:
+                    j = tmp.index(largest_min) + i
+                    lower[i] = higher[j + 1]
+            except:
+                lower[i] = 0
+
+            try:
+                smallest_max = min(x for x in tmp if x >= A[i])
+                if smallest_max != -1:
+                    p = tmp.index(smallest_max) + i
+                    higher[i] = lower[p + 1]
+            except:
+                higher[i] = 0
+            i -= 1
+        return sum(higher)
+    
+#time limit (2)   
 class Solution(object):
     def oddEvenJumps(self, A):
         res = 1

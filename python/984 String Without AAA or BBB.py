@@ -52,3 +52,19 @@ class Solution(object):
             s = s.replace("y", "a")
             return s
 
+#credit to: fuxuemingzhu 
+class Solution(object):
+    def strWithout3a3b(self, A, B):
+        a, b = ("a", "b") if A > B else ("b", "a")
+        A, B = (A, B) if A > B else (B, A)
+        
+        ab = [a+b] * B
+        A -= B
+        res = []
+        while A:
+            res.append(a)
+            if ab:
+                res.append(ab.pop())
+            A -= 1
+        res += ab
+        return "".join(res)

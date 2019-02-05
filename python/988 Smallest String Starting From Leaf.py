@@ -1,3 +1,4 @@
+#credit to: https://zxi.mytechroad.com/blog/tree/leetcode-988-smallest-string-starting-from-leaf/
 class Solution:
     def smallestFromLeaf(self, root: 'TreeNode') -> 'str':
         

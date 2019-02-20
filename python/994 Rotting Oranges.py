@@ -1,30 +1,42 @@
+import copy
+
 class Solution(object):
+
+    def check_rotten(self, grid):
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 1:
+                    return False
+        return True
+
     def orangesRotting(self, grid):
         row = len(grid)
         column = len(grid[0])
-
-        def dfs(i, j, row, column, grid, count):
-            for dx, dy in zip([0,1,0,-1],[1,0,-1,0]):
-                new_i = i + dx
-                new_j = j + dy
-                if new_i >= 0 and new_i < row and new_j >= 0 and new_j < column and grid[i][j] == 2:
-                    if grid[new_i][new_j] == 1:
-                        grid[new_i][new_j] = 2
-                        count = 1
-                        #print(grid)
-                    else:
-                        continue
-            return count
-
         count = 0
-        tmp = 0
-        res = 0
-        for i in range(row):
-            for j in range(column):
-                res += dfs(i, j, row, column, grid, count)
+        prev_grid = copy.deepcopy(grid)
 
-        for i in range(row):
-            for j in range(column):
-                if grid[i][j] == 1:
-                    return -1
-        return res
+        while True:
+            if self.check_rotten(grid):
+                break
+            for i in range(row):
+                for j in range(column):
+                    if grid[i][j] != 1:
+                        continue
+                    rot = False
+                    for dx, dy in zip([0,1,0,-1], [1,0,-1,0]):
+                        x = i + dx
+                        y = j + dy
+                        if x < 0 or y < 0 or x >= row or y >= column:
+                            continue
+                        if prev_grid[x][y] == 2:
+                            rot = True
+                            break
+                    if rot:
+                        grid[i][j] = 2
+            count += 1
+            if grid == prev_grid:
+                break
+            prev_grid = copy.deepcopy(grid)
+        if self.check_rotten(grid):
+            return count
+        return -1

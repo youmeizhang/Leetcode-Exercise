@@ -23,9 +23,16 @@ class RangeModule(object):
             self.ranges = copy.deepcopy(res)        
 
     def queryRange(self, left, right):
-        for ran in self.ranges:
-            if left >= ran[0] and right <= ran[1]:
+        r = len(self.ranges) - 1
+        l = 0
+        while(l <= r):
+            mid = (l + r) // 2
+            if self.ranges[mid][0] <= left and self.ranges[mid][1] >= right:
                 return True
+            elif self.ranges[mid][1] < left:
+                l = mid + 1
+            else:
+                r = mid - 1
         return False
         
 

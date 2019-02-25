@@ -3,6 +3,47 @@ class TicTacToe(object):
     def __init__(self, n):
         self.grid = [["-"] * n for _ in range(n)]
         self.n = n
+        self.rows = [0] * n
+        self.cols = [0] * n
+        self.diag = [0] * n
+        self.rediag = [0] * n
+        
+        """
+        Initialize your data structure here.
+        :type n: int
+        """
+        
+
+    def move(self, row, col, player):
+        if player == 1:
+            self.rows[row] += 1
+            self.cols[col] += 1
+            if row == col:
+                self.diag[row] += 1
+            if row + col == self.n-1:
+                self.rediag[row] += 1
+            
+        elif player == 2:
+            self.rows[row] -= 1
+            self.cols[col] -= 1
+            if row == col:
+                self.diag[row] -= 1
+            if row + col == self.n - 1:
+                self.rediag[row] -= 1
+        
+        if max(self.rows) == self.n or max(self.cols) == self.n or sum(self.diag) == self.n or sum(self.rediag) == self.n:
+            return player
+        elif min(self.rows) == -1 * self.n or min(self.cols) == -1 * self.n or sum(self.diag) == -1 * self.n or sum(self.rediag) == -1 * self.n:
+            return player
+        else:
+            return 0
+        
+#solution 2:
+class TicTacToe(object):
+
+    def __init__(self, n):
+        self.grid = [["-"] * n for _ in range(n)]
+        self.n = n
         """
         Initialize your data structure here.
         :type n: int

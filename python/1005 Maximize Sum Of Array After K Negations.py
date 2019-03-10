@@ -1,3 +1,5 @@
+#credit to: https://www.geeksforgeeks.org/maximize-array-sun-after-k-negation-operations/
+
 class Solution(object):
     def largestSumAfterKNegations(self, A, K):
         n = len(A)

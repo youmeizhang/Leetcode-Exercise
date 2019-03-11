@@ -40,3 +40,31 @@ class Solution(object):
             return count2
 
         return -1
+    
+#credit to: https://blog.csdn.net/fuxuemingzhu/article/details/88379160
+class Solution(object):
+    def minDominoRotations(self, A, B):
+        dic = collections.Counter(A + B)
+        n = len(A)
+        if dic.most_common(1)[0][1] < n:
+            return -1
+        target = dic.most_common(1)[0][0]
+
+        a_swap = 0
+        b_swap = 0
+
+        for i in range(n):
+            if A[i] == B[i]:
+                if A[i] != target:
+                    return -1
+                else:
+                    continue
+
+            elif A[i] == target:
+                b_swap += 1
+            elif B[i] == target:
+                a_swap += 1
+            else:
+                return -1
+
+        return min(a_swap, b_swap)

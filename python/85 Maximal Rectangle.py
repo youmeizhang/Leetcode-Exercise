@@ -34,9 +34,8 @@ class Solution(object):
 
         column = len(matrix[0])
 
-        res = 0
         dp = []
-        for i in range(len(matrix[0])):
+        for i in range(column):
             if matrix[0][i] == "1":
                 dp.append(1)
             else:
@@ -45,15 +44,16 @@ class Solution(object):
         if row == 1:
             return largestRectangleArea(dp)
 
+        res = largestRectangleArea(dp)
+        
         for i in range(1, row):
             for j in range(column):
                 if matrix[i][j] == "1":
                     dp[j] = dp[j] + int(matrix[i][j])
                 else:
                     dp[j] = 0
+
             tmp = largestRectangleArea(dp)
             res = max(res, tmp)
 
         return res
-
-

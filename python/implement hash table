@@ -1,3 +1,5 @@
+#good example: http://interactivepython.org/runestone/static/pythonds/SortSearch/Hashing.html
+
 hash_table = [[] for _ in range(10)]
 #[[], [], [], [], [], [], []...]
 

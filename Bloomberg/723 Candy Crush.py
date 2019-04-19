@@ -90,3 +90,38 @@ class Solution(object):
                 break
             total_pos = []
         return board
+
+# credit to: http://www.cnblogs.com/lightwindy/p/9744174.html
+class Solution(object):
+    def candyCrush(self, board):
+        row = len(board)
+        col = len(board[0])
+
+        flag = True
+        while flag:
+            flag = False
+
+            for r in range(row):
+                for c in range(col - 2):
+                    if abs(board[r][c]) == abs(board[r][c+1]) == abs(board[r][c+2]) != 0:
+                        board[r][c] = board[r][c+1] = board[r][c+2] = -abs(board[r][c])
+                        flag = True
+
+
+            for r in range(row - 2):
+                for c in range(col):
+                    if abs(board[r][c]) == abs(board[r+1][c]) == abs(board[r+2][c]) != 0:
+                        board[r][c] = board[r+1][c] = board[r+2][c] = -abs(board[r][c])
+                        flag = True
+      
+            for c in range(col):
+                i = row - 1
+                for r in reversed(range(row)):
+                    if board[r][c] > 0:
+                        #replace the original value with only positive value
+                        board[i][c] = board[r][c]
+                        i -= 1
+
+                for r in reversed(range(i+1)):
+                    board[r][c] = 0
+        return board

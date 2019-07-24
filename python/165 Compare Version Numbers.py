@@ -26,3 +26,29 @@ class Solution:
                 if int(v1[j]) != 0:
                     return 1
             return 0
+
+        
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+        v1 = version1.split(".")
+        v2 = version2.split(".")
+        n = len(v1)
+        m = len(v2)
+
+        while n < m:
+            v1.append("0")
+            n += 1
+        
+        while m < n:
+            v2.append("0")
+            m += 1
+    
+        
+        for i in range(m):
+            if int(v1[i]) > int(v2[i]):
+                return 1
+            elif int(v1[i]) < int(v2[i]):
+                return -1
+            else:
+                continue
+        return 0

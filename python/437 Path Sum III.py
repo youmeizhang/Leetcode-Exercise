@@ -19,3 +19,41 @@ class Solution:
         ans += self.pathSum(root.right, sum)
         ans += self.pathSum(root.left, sum)
         return ans
+    
+    
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def pathSum(self, root, sum_):
+        self.num = 0
+        
+        def helper(root, target):
+            if not root:
+                return
+            test(root, target)
+            helper(root.left, target)
+            helper(root.right, target)
+        
+        def test(root, target):
+            if not root:
+                return
+            if root.val == target:
+                self.num += 1
+            
+            test(root.right, target - root.val)
+            test(root.left, target - root.val)
+        
+        helper(root, sum_)
+        
+        return self.num
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: int
+        """
+        

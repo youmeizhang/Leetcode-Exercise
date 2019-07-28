@@ -56,4 +56,32 @@ class Solution:
         :type sum: int
         :rtype: int
         """
-        
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def pathSum(self, root: TreeNode, sum_: int) -> int:
+        self.res = 0
+        path = []
+        self.dfs(root, sum_, path)
+        return self.res
+    
+    def dfs(self, root, sum_, path):
+        if not root:
+            return
+        temp = sum_
+        path.append(root.val)
+        for i in range(len(path)-1, -1, -1):
+            temp -= path[i]
+            if temp == 0:
+                self.res += 1
+                
+        self.dfs(root.left, sum_, path)
+        self.dfs(root.right, sum_, path)
+        path.pop()
+    
+               

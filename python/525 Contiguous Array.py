@@ -1,18 +1,27 @@
-class Solution:
+class Solution(object):
     def findMaxLength(self, nums):
-        for i in range(len(nums)):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        dic = {}
+        
+        for i in range(n):
             if nums[i] == 0:
                 nums[i] = -1
-
-        dic = {}
-        tmp_sum = 0
+               
+        prefix_sum = 0
         ans = 0
-        for i in range(len(nums)):
-            tmp_sum += nums[i]
-            if tmp_sum == 0:
+        
+        for i in range(n):
+            prefix_sum += nums[i]
+            if prefix_sum == 0:
                 ans = i + 1
-            elif tmp_sum not in dic:
-                dic[tmp_sum] = i
+            elif prefix_sum in dic:
+                ans = max(ans, i - dic[prefix_sum])
             else:
-                ans = max(ans, i - dic[tmp_sum])
+                dic[prefix_sum] = i
+                
         return ans
+        

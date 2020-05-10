@@ -29,3 +29,15 @@ class Solution(object):
         :rtype: int
         """
         
+# credit to: https://leetcode.com/explore/featured/card/may-leetcoding-challenge/535/week-2-may-8th-may-14th/3325/discuss/242938/JavaC++Python-Directed-Graph        
+class Solution:
+    def findJudge(self, N: int, trust: List[List[int]]) -> int:
+        count = [0] * (N+1)
+        for i, j in trust:
+            count[i] -= 1
+            count[j] += 1
+            
+        for i in range(1, N+1):
+            if count[i] == N-1:
+                return i
+        return -1

@@ -24,4 +24,18 @@ class Solution(object):
                 total += costs[j][1]
         return total
 
+class Solution(object):
+    def twoCitySchedCost(self, costs):
+        """
+        :type costs: List[List[int]]
+        :rtype: int
+        """
+        n = len(costs) // 2
+        total = 0
+        diff = []
+        for i in range(2*n):
+            total += costs[i][0]
+            diff.append(costs[i][1] - costs[i][0])
+        diff.sort()
+        return total + sum(diff[0:n])
 

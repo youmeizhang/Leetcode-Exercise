@@ -1,3 +1,6 @@
+# Basic idea:
+# For each number as a root, we calculate the posibility of left part and right part combination and then multiply them
+# For DP idea, example [1,2,3,4,5,6,7] if we choose 3 as the root, then the possibility of left part can be considered as dp[2] and the right part can be like dp[4] 
 class Solution(object):
     def numTrees(self, n):
         g = [0] * (n+1)
@@ -12,4 +15,3 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        

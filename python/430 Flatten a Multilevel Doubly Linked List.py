@@ -1,3 +1,4 @@
+# credit: https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/discuss/154908/Python-easy-solution-using-stack
 """
 # Definition for a Node.
 class Node:

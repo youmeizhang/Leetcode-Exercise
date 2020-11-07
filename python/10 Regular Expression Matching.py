@@ -43,3 +43,30 @@ class Solution(object):
                 else:
                     dp[i][j] = dp[i-1][j-1] and (s[i-1] == p[j - 1] or p[j-1] == ".")
         return dp[-1][-1]
+
+###
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        m = len(s)
+        n = len(p)
+        
+        T = [[False] * (n+1) for _ in range(m+1)]
+        
+        T[0][0] = True
+        
+        
+        for j in range(n):
+            if p[j] == "*":
+                T[0][j+1] = T[0][j-1]
+        
+        for i in range(m):
+            for j in range(n):
+                if p[j] == "*":
+                    T[i+1][j+1] = T[i+1][j-1] or (T[i][j+1] and (s[i] == p[j-1] or p[j-1] == "."))
+                elif s[i] == p[j] or p[j] == ".":
+                    T[i+1][j+1] = T[i][j]
+                else:
+                    T[i+1][j+1] = False
+        print(T)
+        return T[-1][-1]
+        

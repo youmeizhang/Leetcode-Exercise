@@ -1,0 +1,28 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n < 1:
+            return 0
+        dic = {}
+        res = 1
+
+        for i in range(n):
+            if nums[i] in dic:
+                continue
+            elif nums[i] - 1 not in dic and nums[i] + 1 not in dic:
+                dic[nums[i]] = 1
+            elif nums[i] - 1 in dic and nums[i] + 1 in dic:
+                l = dic[nums[i] - 1]
+                r = dic[nums[i] + 1]
+                t = l + r + 1
+                dic[nums[i] - l] = dic[nums[i] + r] = dic[nums[i]] = t
+            elif nums[i] - 1 in dic:
+                l = dic[nums[i] - 1]
+                dic[nums[i] - l] = dic[nums[i]] = l + 1
+            elif nums[i] + 1 in dic:
+                r = dic[nums[i] + 1]
+                dic[nums[i] + r] = dic[nums[i]] = r + 1
+            res = max(res, dic[nums[i]])
+        return res
+
+
